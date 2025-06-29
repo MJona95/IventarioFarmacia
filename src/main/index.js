@@ -1,7 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+import { is } from '@electron-toolkit/utils'
+import { initializeDb, getDb, closeDb } from '../database/database'
+import { createTableUser } from '../database/dbtables'
 
 function createWindow() {
   // Create the browser window.
@@ -9,7 +10,7 @@ function createWindow() {
     width: 900,
     height: 670,
     show: false,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -17,13 +18,8 @@ function createWindow() {
     }
   })
 
-  mainWindow.on('ready-to-show', () => {
+   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-  })
-
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
   })
 
   // HMR for renderer base on electron-vite cli.
@@ -38,27 +34,39 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
-  // Set app user model id for windows
-  electronApp.setAppUserModelId('com.electron')
+app.whenReady().then( async () => {
+try {
+        // 1. Initialize the database
+        // We 'await' this because we need the DB to be ready before creating tables or doing anything else.
+        // We pass the 'app' object because dbInitializer.js needs it for app.getPath('userData').
+        await initializeDb(app);
+        console.log('Database initialized and ready.');
 
-  // Default open or close DevTools by F12 in development
-  // and ignore CommandOrControl + R in production.
-  // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
-  app.on('browser-window-created', (_, window) => {
-    optimizer.watchWindowShortcuts(window)
-  })
+        // 2. Get the database instance
+        // Once initializeDb has finished, you can get the actual db instance from dbInitializer.js
+        const db = getDb();
+        console.log('Database instance obtained.');
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+        // 3. Create your tables
+        // We 'await' this because table creation is asynchronous.
+        // We pass the 'db' instance to createTableUser.
+        await createTableUser(db);
+        console.log('User table and initial admin user configured.');
 
-  createWindow()
+        // If you have more table creation functions (e.g., createTableProducts), call them here:
+        // await createTableProducts(db);
+        // console.log('Products table created.');
 
-  app.on('activate', function () {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
+        // Now that the database is fully set up, create the main window
+        createWindow();
+
+    } catch (error) {
+        // If any error occurs during DB init or table creation, log it and quit the app.
+        console.error('Critical failure during application startup:', error);
+        app.quit();
+    }
+
+
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
