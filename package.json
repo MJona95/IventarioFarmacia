@@ -11,7 +11,7 @@
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
     "build": "electron-vite build",
-    "postinstall": "electron-rebuild && electron-builder install-app-deps", 
+    "postinstall": "electron-rebuild && electron-builder install-app-deps",
     "rebuild": "electron-rebuild",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
@@ -22,6 +22,7 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
     "electron-updater": "^6.3.9",
+    "react-router-dom": "^7.6.3",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
@@ -30,8 +31,8 @@
     "@vitejs/plugin-react": "^4.3.4",
     "electron": "^35.1.5",
     "electron-builder": "^25.1.8",
+    "electron-rebuild": "^3.2.9",
     "electron-vite": "^3.1.0",
-    "electron-rebuild": "^3.2.9", 
     "eslint": "^9.24.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",

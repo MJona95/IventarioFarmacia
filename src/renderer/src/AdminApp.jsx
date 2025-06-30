@@ -1,14 +1,13 @@
-import Login from "./components/Login"
 
-function App() {
+function AdminApp() {
 
   const ipcHandle = () => window.electron.ipcRenderer.send('ping')
 
   return (
     <>
-      <Login />
+      <h1>hola mundo desde la ventana admin</h1>
     </>
   )
 }
 
-export default App
+export default AdminApp
