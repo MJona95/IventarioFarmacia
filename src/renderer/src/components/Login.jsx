@@ -20,37 +20,35 @@ export default function Login() {
     <>
     <form 
       onSubmit={handleSubmit}
-      className="form"
+      className="form glass-effect"
     >
       <h1 className="title">Login</h1>
 
-      <label className="label">
         <input 
+          className="inputuser"
           type="text" 
-          id="email" 
-          name="correo" 
-          placeholder="Escriba su Correo"
+          id="user" 
+          name="user" 
           value={username}
           onChange={(e) => setUserName(e.target.value)}
           required
         />
-      </label>
-
-      <label className="">
-        <input 
+      <label className="label" id="userlabel">Usuario</label>
+      
+      <input 
+          className="inputpassword"
           type="password" 
           id="password" 
           name="password" 
-          placeholder="Escriba su Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
+      <label className="label" id="passwordlabel">Contraseña</label>
        
        <button 
         type="submit" 
-        className=""
+        className="button"
       >
         Enviar
       </button>

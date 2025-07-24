@@ -1,0 +1,59 @@
+.container-user{
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+        "header header research research"
+        "buttons buttons buttons buttons"
+        "content content content content"
+        "content content content content"; 
+    padding: 1rem; 
+    max-width: calc(100% - 2rem); 
+    margin: 0 auto; 
+
+
+}
+
+.head{ 
+    border-radius: 5rem;
+    grid-area: header;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.head .title{
+    font-size: 2.5rem;
+}
+
+.research{
+    grid-area: research;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.buttons{
+    background-color: #333;
+    padding: 0.8rem;
+    border-radius: 5rem;
+    grid-area: buttons;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container-user .content{
+    grid-area: content;
+    min-width: 0;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 0.9rem;
+}

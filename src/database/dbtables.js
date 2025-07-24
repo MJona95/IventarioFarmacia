@@ -1,4 +1,3 @@
-
 /**
  * Crea la tabla de usuarios si no existe.
  */
@@ -8,13 +7,14 @@ function createTableUser(db) {
             idUser INTEGER PRIMARY KEY AUTOINCREMENT,
             Name TEXT NOT NULL UNIQUE,
             Password TEXT NOT NULL,
-            Type TEXT NOT NULL
+            Type TEXT NOT NULL,
+            ImagePath Text
         )
     `;
 
     const insertAdminQuery = `
-        INSERT OR IGNORE INTO User (Name, Password, Type)
-        VALUES (?, ?, ?)
+        INSERT OR IGNORE INTO User (Name, Password, Type, ImagePath)
+        VALUES (?, ?, ?, ?)
     `;
 
     db.run(createTableQuery, (err) => {
@@ -22,7 +22,8 @@ function createTableUser(db) {
             console.error('Error al crear la tabla "User":', err);
         } else {
             console.log('Tabla "User" lista.');
-            db.run(insertAdminQuery, ['admin', 'del1al3', 'admin'], (insertErr) => {
+            const adminImagePath = '/images/user.jpg';
+            db.run(insertAdminQuery, ['admin', 'del1al3', 'admin', adminImagePath], (insertErr) => {
                 if (insertErr) {
                     console.error('Error al insertar usuario admin:', insertErr);
                 } else {

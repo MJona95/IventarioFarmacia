@@ -1,0 +1,125 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-left: 1rem;
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem;
+}
+
+.title{
+    color: white;
+}
+
+.list {
+    background-color: #777;
+    width: 3.6rem;
+    padding: 0.4rem;
+    border-radius: 2rem;
+    list-style: none;           
+    display: flex;   
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.title{
+    font-size: 2rem;
+    font-family: Futuram;
+}
+
+.item{
+    justify-content: center;
+}
+
+.item a{
+    text-decoration: none;
+    font-family: Futuram;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    width: 3.6rem;
+    
+    border-radius: 2rem;
+    box-sizing: border-box;
+    transition: all 0.5s ease-out, background-color 0.3s ease, color 0.3s ease; ;
+}
+
+.item a:hover {
+    background-color: rgb(45, 223, 0);
+    width: calc(3rem + 0.5rem + 5rem);
+}
+
+.item:has(.active-link){
+    background-color: rgb(45, 223, 0);
+    width: calc(3rem + 0.5rem + 5rem);
+    border-radius: 2rem;
+}
+
+.icon-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    background-color: #555; 
+    border-radius: 2.5rem; 
+    padding: 0.5rem;
+    flex-shrink: 0;
+
+    width: 2.8rem;
+    height: 2.8rem;
+
+    transition: all 0.5s ease;
+}
+
+.icon-wrapper:hover{
+    background-color: rgb(45, 223, 0); 
+}
+
+
+.icon{
+    transition: fill 0.3s ease, stroke 0.3s ease;
+    color: white;
+}
+
+.item:has(.active-link) .icon{
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+
+.text-item {
+    color: #333; 
+    max-width: 0; 
+    opacity: 0; 
+    white-space: nowrap; 
+    font-weight: 600;
+    flex-grow: 1; 
+    display: flex;
+    font-size: 1.2rem; 
+
+    transition: max-width 0.3s ease-out, opacity 0.3s ease-out; 
+    transition-delay: 0.1s; 
+}
+
+.item a:hover .text-item {
+    max-width: 6rem; 
+    opacity: 1; 
+}
+
+.item:has(.active-link) .text-item {
+    max-width: 6rem; 
+    opacity: 1;
+}
+
+.item:has(.active-link) .icon-wrapper {
+    background-color: rgb(45, 223, 0); /* Fondo del círculo del icono cuando está activo */
+    box-shadow: 0 0 15px rgba(140, 255, 0, 0.6);
+}

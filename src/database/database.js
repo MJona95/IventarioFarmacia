@@ -18,7 +18,7 @@ export function initializeDb(app) {
             return resolve(dbInstance); // Devuelve la instancia existente
         }
 
-        const dbPath = path.join(app.getPath('userData'), 'mydatabase.db');
+        const dbPath = path.join(app.getPath('userData'), 'farmaciaInventario.db');
 
         dbInstance = new sqlite3.Database(dbPath, (err) => {
             if (err) {

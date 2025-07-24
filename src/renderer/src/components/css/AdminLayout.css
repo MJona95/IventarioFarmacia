@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar{
+    background-color: #222;
+    width: 15%;
+    text-align: center;
+    border-right: 1px solid #555;
+}
+
+.content{
+    padding: 1rem;
+    background-color: #222;
+    color: white;
+    flex-grow: 1;
+    width: auto;
+}
+

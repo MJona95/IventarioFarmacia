@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()]
   },
   preload: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],   
   },
   renderer: {
     resolve: {
@@ -15,6 +15,14 @@ export default defineConfig({
         '@renderer': resolve('src/renderer/src')
       }
     },
-    plugins: [react()]
+    plugins: [react()],
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'src/renderer/index.html'),
+          admin: resolve(__dirname, 'src/renderer/admin.html') 
+        }
+      }
+    }
   }
 })

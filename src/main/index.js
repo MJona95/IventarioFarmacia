@@ -3,6 +3,10 @@ import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
 
 import { setupAuthProcess } from '../handlers/authHandler'
+
+//manejadores de los usuarios 
+import { setupUsersHandlers } from '../handlers/usersHandler'
+
 import { initializeDb, getDb, closeDb } from '../database/database'
 import { createTableUser } from '../database/dbtables'
 
@@ -83,6 +87,9 @@ try {
         console.log('User table and initial admin user configured.');
 
         setupAuthProcess(ipcMain, db, createAdminWindow) 
+
+        //invocaciones de los manejadores
+        setupUsersHandlers(ipcMain, db)
 
         createWindow();
 

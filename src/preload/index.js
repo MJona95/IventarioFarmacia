@@ -4,7 +4,20 @@ import { electronAPI } from '@electron-toolkit/preload'
 // Custom APIs for renderer
 const api = {
 
-  login: (credentials) => ipcRenderer.invoke('login', credentials) 
+  login: (credentials) => ipcRenderer.invoke('login', credentials),
+   
+  db: {
+    // Para buscar/seleccionar datos
+    select: (query, params) => ipcRenderer.invoke('select', { query, params }),
+    // Para insertar nuevos registros
+    insert: (query, params) => ipcRenderer.invoke('insert', { query, params }),
+    // Para actualizar registros existentes
+    update: (query, params) => ipcRenderer.invoke('update', { query, params }),
+    // Para eliminar registros
+    delete: (query, params) => ipcRenderer.invoke('delete', { query, params }),
+
+    selectAll: (tableName) => ipcRenderer.invoke('selectAll', tableName),
+  }
 
 }
 

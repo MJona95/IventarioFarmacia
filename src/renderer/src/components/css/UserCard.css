@@ -1,0 +1,24 @@
+.Card{
+    border: 1px solid red;
+    max-width: 250px;
+    min-height: 200px;
+    border-radius: 0.6rem;
+    padding: 1rem;
+}
+
+.Image{
+    border-radius: 2rem;
+}
+
+.Card .section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 1.2rem;
+}
+

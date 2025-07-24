@@ -1,15 +1,62 @@
 .form{
-    width: 150%;
+    width: 200%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
     color: black;
     border-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.5);
 }
 
+.glass-effect{
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(0.4rem);
+}
+
+.label{
+    margin-right: 5rem;
+    transition: .5s;
+    transform: translateY(-30px);
+}
+
+#userlabel{
+   margin-right: 6.5rem;
+}
+
+input{
+    height: 2rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid white;
+    transition: 1s;
+}
+
+.inputuser:focus~#userlabel,
+.inputuser:valid~#userlabel{
+    transform: translateY(-50px);
+}
+
+.inputpassword:focus~#passwordlabel,
+.inputpassword:valid~#passwordlabel{
+    transform: translateY(-50px);
+}
+
 .title{
     padding: 1rem;
+    font-family: Futuram;
+}
+
+.button{
+    height: 3rem;
+    width: 60%;
+    border: none;
+    outline: none;
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
 }
